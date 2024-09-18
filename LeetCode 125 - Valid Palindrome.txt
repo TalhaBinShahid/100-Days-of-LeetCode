@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int l = 0;
+        int r = s.size() - 1;
+        
+        while (l < r) {
+            // Move left index if not alphanumeric
+            if (!isalnum(s[l])) {
+                ++l;
+            }
+            // Move right index if not alphanumeric
+            else if (!isalnum(s[r])) {
+                --r;
+            }
+            // Compare the characters after converting to lowercase
+            else if (tolower(s[l]) != tolower(s[r])) {
+                return false;
+            }
+            else {
+                ++l;
+                --r;
+            }
+        }
+        return true;
+    }
+};
