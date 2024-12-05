@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k) {
+        int count = 0;
+        int result = -1;
+        inOrderTraversal(root, k, count, result);
+        return result;
+    }
+    void inOrderTraversal(TreeNode* node, int k, int& count, int& result) {
+        if (!node || count >= k) return;
+        
+        inOrderTraversal(node->left, k, count, result);
+        
+        if (++count == k) {
+            result = node->val;
+            return;
+        }
+        
+        inOrderTraversal(node->right, k, count, result);
+    }
+};
