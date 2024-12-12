@@ -1,0 +1,18 @@
+class Solution {
+public:
+    TreeNode* prev = nullptr;
+    int getMinimumDifference(TreeNode* root) {
+        int minDiff = INT_MAX;
+        prev = nullptr;  // Initialize prev as nullptr
+        inOrder(root, minDiff);
+        return minDiff;
+    }
+
+    void inOrder(TreeNode* node, int& minDiff) {
+        if (!node) return;
+        inOrder(node->left, minDiff);
+        if (prev) minDiff = std::min(minDiff, node->val - prev->val);
+        prev = node;
+        inOrder(node->right, minDiff);
+    }
+};
