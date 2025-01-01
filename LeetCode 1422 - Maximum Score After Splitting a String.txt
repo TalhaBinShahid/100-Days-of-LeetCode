@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int maxScore(string s) {
+       int n = s.size();
+        int totalOnes = 0;
+        int maxScore = 0, leftZeros = 0, rightOnes = 0;
+
+        for (char c : s) {
+            if (c == '1') totalOnes++;
+        }
+
+        for (int i = 0; i < n - 1; ++i) {  
+            if (s[i] == '0') leftZeros++;
+            else rightOnes++;
+
+            int score = leftZeros + (totalOnes - rightOnes);
+            maxScore = max(maxScore, score);
+        }
+
+        return maxScore; 
+    }
+};
