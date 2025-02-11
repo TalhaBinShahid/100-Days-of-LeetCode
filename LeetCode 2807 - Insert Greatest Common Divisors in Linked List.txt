@@ -1,0 +1,16 @@
+class Solution {
+public:
+    ListNode* insertGreatestCommonDivisors(ListNode* head) {
+        ListNode* current = head;
+        
+        while (current && current->next) {
+            int gcdValue = std::gcd(current->val, current->next->val);
+            ListNode* newNode = new ListNode(gcdValue);
+            newNode->next = current->next;
+            current->next = newNode;
+            current = newNode->next;
+        }
+        
+        return head;
+    }
+};
